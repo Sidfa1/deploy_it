@@ -11,46 +11,33 @@ from django.views.decorators.cache import never_cache
 # @never_cache
 # @login_required(login_url='login')
 def getpostPage(request):
-    return render(request,'Post/get-post.html')
+    try:
+        if request.session.get('userId'):
+            return render(request,'Post/get-post.html')
+    except:
+        return redirect('login')
+    return redirect('login')            
 
 # @never_cache
 # @login_required(login_url='login')
 def helpPage(request):
-    return render(request,'Post/help.html')
+    try:
+        if request.session.get('userId'):
+            return render(request,'Post/help.html')
+    except:
+        return redirect('login')
+    return redirect('login')   
+    
 # def postPage(request):
 #     return render(request,'Post/post.html')
 def submit_form(request):
-    return redirect('base')
-# def Post(request):
-#     if request.method == 'POST':
-#         # Retrieve data from POST request
-#         passenger_name = request.POST.get('PassengerName')
-#         date_of_journey = request.POST.get('DateOfJourney')
-#         gender = request.POST.get('gender')
-#         flight_number = request.POST.get('FlightNumber')
-#         pnr_number = request.POST.get('PNRNumber')
-#         source = request.POST.get('source')  # Ensure field name consistency
-#         destination = request.POST.get('destination')  # Ensure field name consistency
-#         baggage_space = request.POST.get('BaggageSpace')
-#         checkbox = request.POST.get('checkbox') == 'on'  # Checkbox handling
-
-#         # Create a new instance of PostModel
-#         new_passenger = PostModel(
-#             passenger_name=passenger_name,
-#             date_of_journey=date_of_journey,
-#             gender=gender,
-#             flight_number=flight_number,
-#             pnr_number=pnr_number,
-#             source=source,
-#             destination=destination,
-#             baggage_space=baggage_space,
-#             is_checked=checkbox,
-#         )
-        
-#         # Save the new instance to the database
-#         new_passenger.save()
-
-#     return render(request, 'Post/post.html', {})
+    try:
+        if request.session.get('userId'):
+            return redirect('base')
+    except:
+        return redirect('login')
+    return redirect('login')  
+    
 
 # post created by me 
 from django.shortcuts import render
@@ -61,94 +48,57 @@ def generate_random_5_digit_number():
     return str(random.randint(10000, 99999))
 
 
-# @allowed_users(allowed_roles=['user'])
-# def Post(request):
-#     if request.method == 'POST':
-
-#         user = request.user
-#         passenger_name = request.POST.get('PassengerName')
-#         date_of_journey = request.POST.get('DateOfJourney')
-#         gender = request.POST.get('gender')
-#         flight_number = request.POST.get('FlightNumber')
-#         pnr_number = request.POST.get('PNRNumber')
-#         source = request.POST.get('source')
-#         destination = request.POST.get('destination')
-#         baggage_space = request.POST.get('BaggageSpace')
-#         checkbox = request.POST.get('checkbox') == 'on'
-#         baggage_number = generate_random_5_digit_number()
-#         # Create a new instance of PostModel
-#         new_passenger = PostModel(
-#             passenger_name=passenger_name,
-#             date_of_journey=date_of_journey,
-#             gender=gender,
-#             flight_number=flight_number,
-#             pnr_number=pnr_number,
-#             source=source,
-#             destination=destination,
-#             baggage_space=baggage_space,
-#             is_checked=checkbox,
-#             user=request.user,
-#             baggage_number=baggage_number 
-#         )
-       
-#         # Save the new instance to the database
-#         new_passenger.save()
-#         new_passenger.chat_room_id = generate_random_5_digit_number()
-#         new_passenger.save()
-
-#     user_posts = PostModel.objects.filter(user=request.user)
-#     chat_rooms = PostModel.objects.filter(user=request.user).exclude(chat_room_id__isnull=True)
-
-#     return render(request, 'Post/post.html', {'user_posts': user_posts, 'chat_rooms': chat_rooms})
-
-
 # i am cahnging 
 # @never_cache
 # @login_required(login_url='login')
 def Post(request):
-    if request.method == 'POST':
+    try: 
+        if request.session.get('userId'):
+            if request.method == 'POST':
 
-        user = request.user
+                user = request.user
         # Retrieve data from POST request
-        passenger_name = request.POST.get('PassengerName')
-        date_of_journey = request.POST.get('DateOfJourney')
-        gender = request.POST.get('gender')
-        flight_number = request.POST.get('FlightNumber')
-        pnr_number = request.POST.get('PNRNumber')
-        source = request.POST.get('source')
-        destination = request.POST.get('destination')
-        baggage_space = request.POST.get('BaggageSpace')
-        checkbox = request.POST.get('checkbox') == 'on'
-        baggage_number = generate_random_5_digit_number()
+                passenger_name = request.POST.get('PassengerName')
+                date_of_journey = request.POST.get('DateOfJourney')
+                gender = request.POST.get('gender')
+                flight_number = request.POST.get('FlightNumber')
+                pnr_number = request.POST.get('PNRNumber')
+                source = request.POST.get('source')
+                destination = request.POST.get('destination')
+                baggage_space = request.POST.get('BaggageSpace')
+                checkbox = request.POST.get('checkbox') == 'on'
+                baggage_number = generate_random_5_digit_number()
         
         # Create a new instance of PostModel
-        new_passenger = PostModel(
-            passenger_name=passenger_name,
-            date_of_journey=date_of_journey,
-            gender=gender,
-            flight_number=flight_number,
-            pnr_number=pnr_number,
-            source=source,
-            destination=destination,
-            baggage_space=baggage_space,
-            is_checked=checkbox,
-            user=request.user,
-            baggage_number=baggage_number,
-    
-        )
+                new_passenger = PostModel(
+                    passenger_name=passenger_name,
+                    date_of_journey=date_of_journey,
+                    gender=gender,
+                    flight_number=flight_number,
+                    pnr_number=pnr_number,
+                    source=source,
+                    destination=destination,
+                    baggage_space=baggage_space,
+                    is_checked=checkbox,
+                    user=request.user,
+                    baggage_number=baggage_number,
+                    )
 
         # Save the new instance to the database
-        new_passenger.save()
+                new_passenger.save()
     # chat_rooms = PostModel.objects.filter(user=request.user).exclude(chat_room_id__isnull=True)
     # entered_rooms = chat_rooms.filter(chat_room_id=request.user.username).exclude(chat_room_id__isnull=True)
     # user_posts = PostModel.objects.filter(passenger_name=request.user.username)
 
-    return render(request, 'Post/post.html', {
+            return render(request, 'Post/post.html', {
         # 'user_posts': user_posts,
         # 'chat_rooms' : chat_rooms,
         # 'entered_rooms': entered_rooms,
 
-    })
+            })
+    except:
+        return redirect('login')
+    return redirect('login')
 
 
 
@@ -235,108 +185,6 @@ class PostModelAPIViewID(generics.GenericAPIView):
         post.delete()
         return Response({'message': 'Post deleted successfully'}, status=status.HTTP_204_NO_CONTENT)
 
-#Chat views
-    
- 
-# @api_view(['GET', 'POST'])
-# def user_chat_list(request, user_id, other_user_id=None):
-#     if request.method == 'GET':
-#         # Retrieve all chatted users related to the user with ID user_id
-#         user_profiles = User.objects.exclude(id=user_id).exclude(is_staff=True)
-#         serializer = UserSerializer(user_profiles, many=True)
-#         return Response(serializer.data)
- 
-#     elif request.method == 'POST':
-#         sender_profile = get_object_or_404(User, id=user_id)
-#         receiver_profile = get_object_or_404(User, id=other_user_id)
-#         serializer = ChatMessageSerializer(data=request.data)
- 
-#         if serializer.is_valid():
-#             # Create a new chat message
-#             chat_message = serializer.save(sender=sender_profile, receiver=receiver_profile, timestamp=timezone.now())
- 
-#             # Update user profiles with the new chat message
-#             sender_profile.chat_messages.add(chat_message)
-#             receiver_profile.chat_messages.add(chat_message)
- 
-#             return Response(serializer.data, status=201)
- 
-#         return Response(serializer.errors, status=400)
- 
-# @api_view(['GET', 'POST'])
-# def chat_messages(request, user_id, other_user_id):
-#     if request.method == 'GET':
-#         # Retrieve chat messages between two users
-#         chat_messages = ChatMessage.objects.filter(
-#             Q(sender_id=user_id, receiver_id=other_user_id) | Q(sender_id=other_user_id, receiver_id=user_id)
-#         ).order_by('timestamp')
-#         serializer = ChatMessageSerializer(chat_messages, many=True)
-#         return Response(serializer.data)
- 
-#     elif request.method == 'POST':
-#         sender_profile = get_object_or_404(User, id=user_id)
-#         receiver_profile = get_object_or_404(User, id=other_user_id)
-#         serializer = ChatMessageSerializer(data=request.data)
- 
-#         if serializer.is_valid():
-#             # Create a new chat message
-#             chat_message = serializer.save(sender=sender_profile, receiver=receiver_profile)
- 
-#             # Update user profiles with the new chat message
-#             sender_profile.chat_messages.add(chat_message)
-#             receiver_profile.chat_messages.add(chat_message)
- 
-#             return Response(serializer.data, status=201)
- 
-#         return Response(serializer.errors, status=400)
-    
-    # edit profile views
-
-# abhishek created chat thing
-
-# from django.shortcuts import render, redirect
-# from app1.models import Room, Message
-# from django.http import HttpResponse, JsonResponse
-
-# @login_required
-# def home(request):
-#     username = request.user.username
-#     return render(request, 'home.html', {'username': username})
-
-# def room(request, room):
-#     username = request.GET.get('username')
-#     room_details = Room.objects.get(name=room)
-#     return render(request, 'room.html', {
-#         'username': username,
-#         'room': room,
-#         'room_details': room_details
-#     })
-
-# def checkview(request):
-#    room = request.POST.get('room_name', '')
-#    username = request.POST.get('username', '')
-
-#    if Room.objects.filter(name=room).exists():
-#     return redirect('/app1/'+room+'/?username='+username)
-#    else:
-#     new_room = Room.objects.create(name=room)
-#     new_room.save()
-#     return redirect('/app1/'+room+'/?username='+username)
-
-# def send(request):
-#     message = request.POST['message']
-#     username = request.POST['username']
-#     room_id = request.POST['room_id']
-
-#     new_message = Message.objects.create(value=message, user=username, room=room_id)
-#     new_message.save()
-#     return HttpResponse('Message sent successfully')
-
-# def getMessages(request, room):
-#     room_details = Room.objects.get(name=room)
-
-#     messages = Message.objects.filter(room=room_details.id)
-#     return JsonResponse({"messages":list(messages.values())})
 
 # ///changing
 
@@ -350,47 +198,56 @@ from django.http import HttpResponse, JsonResponse
 # @never_cache
 # @login_required(login_url='login')
 def home(request):
-    username = request.user.username
-    room = request.GET.get('room')
-    return render(request, 'home.html', {'username': username, 'room': room})
+    try:
+        if request.session.get('userId'):
+            username = request.user.username
+            room = request.GET.get('room')
+            return render(request, 'home.html', {'username': username, 'room': room})
+    except:
+        return redirect('login')
+    return redirect('login')
 
 from django.shortcuts import render, get_object_or_404
 from .models import Room, Message
 # @never_cache
 # @login_required(login_url='login')
 def room(request, room):
-    username = request.GET.get('username')
-
-    room_obj, created = Room.objects.get_or_create(name=room)
-
-    if not room_obj.is_active:
-        room_obj.is_active = True
-        room_obj.save()
-
-    # Get the messages for the room
-    messages = Message.objects.filter(room=room_obj)
-
-    return render(request, 'room.html', {
+    try:
+        if request.session.get('userId'):
+             username = request.GET.get('username')
+             room_obj, created = Room.objects.get_or_create(name=room)
+             if not room_obj.is_active:
+                 room_obj.is_active = True
+                 room_obj.save()
+                 messages = Message.objects.filter(room=room_obj)
+             return render(request, 'room.html', {
         'username': username,
         'room': room,
         'room_details': room_obj,
         'messages': messages,
     })
+    except:
+        return redirect('login')
+    return redirect('login')
 
 
 # @never_cache
 # @login_required(login_url='login')
 def checkview(request):
-   room = request.POST.get('room_name', '')
-   username = request.POST.get('username', '')
-
-   if Room.objects.filter(name=room).exists():
-    return redirect('/app1/'+room+'/?username='+username)
-   else:
-    new_room = Room.objects.create(name=room)
-    new_room.save()
-    return redirect('/app1/'+room+'/?username='+username)
-
+   
+   try:
+       if request.session.get('userId'):
+           room = request.POST.get('room_name', '')
+           username = request.POST.get('username', '')
+           if Room.objects.filter(name=room).exists():
+               return redirect('/app1/'+room+'/?username='+username)
+           else:
+               new_room = Room.objects.create(name=room)
+               new_room.save()
+               return redirect('/app1/'+room+'/?username='+username)
+   except:
+       return redirect('login')
+   return redirect('login')
 
 from django.views.decorators.csrf import csrf_exempt
 from django.utils.decorators import method_decorator
