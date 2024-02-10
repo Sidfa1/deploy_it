@@ -182,8 +182,8 @@ def loginPage(request):
            
     return render(request,'Login/login.html')
 
-@never_cache
-@login_required(login_url='login')
+# @never_cache
+# @login_required(login_url='login')
 def basePage(request):
     return render(request,'Login/base.html')
 
@@ -194,25 +194,25 @@ def logout_view(request):
 
 def submit_form(request):
     return redirect('base')
-@never_cache
-@login_required(login_url='login')
+# @never_cache
+# @login_required(login_url='login')
 def edit_profilePage(request):
     # You can add logic here to retrieve user data if needed
     return render(request, 'Login/edit_profile.html')
 
-@never_cache
-@login_required(login_url='login')
+# @never_cache
+# @login_required(login_url='login')
 def profilePage(request):
     user_posts = request.user.postmodel_set.all()
     return render(request, 'Login/profile.html', {'user_posts': user_posts})
     # return render(request, 'Login/profile.html')
 
-@never_cache
-@login_required(login_url='login')
+# @never_cache
+# @login_required(login_url='login')
 def change_passwordPage(request):
     return render(request, 'Login/change.html')
 
-@never_cache
-@login_required(login_url='login')
+# @never_cache
+# @login_required(login_url='login')
 def verifyPage(request):
     return render(request, 'Login/verify.html')

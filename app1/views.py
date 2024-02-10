@@ -8,13 +8,13 @@ from django.shortcuts import get_object_or_404
 from rest_framework.response import Response
 from django.views.decorators.cache import never_cache
 #
-@never_cache
-@login_required(login_url='login')
+# @never_cache
+# @login_required(login_url='login')
 def getpostPage(request):
     return render(request,'Post/get-post.html')
 
-@never_cache
-@login_required(login_url='login')
+# @never_cache
+# @login_required(login_url='login')
 def helpPage(request):
     return render(request,'Post/help.html')
 # def postPage(request):
@@ -103,8 +103,8 @@ def generate_random_5_digit_number():
 
 
 # i am cahnging 
-@never_cache
-@login_required(login_url='login')
+# @never_cache
+# @login_required(login_url='login')
 def Post(request):
     if request.method == 'POST':
 
@@ -347,8 +347,8 @@ from django.http import HttpResponse, JsonResponse
 # def home(request):
 #     username = request.user.username
 #     return render(request, 'home.html', {'username': username})
-@never_cache
-@login_required(login_url='login')
+# @never_cache
+# @login_required(login_url='login')
 def home(request):
     username = request.user.username
     room = request.GET.get('room')
@@ -356,8 +356,8 @@ def home(request):
 
 from django.shortcuts import render, get_object_or_404
 from .models import Room, Message
-@never_cache
-@login_required(login_url='login')
+# @never_cache
+# @login_required(login_url='login')
 def room(request, room):
     username = request.GET.get('username')
 
@@ -378,8 +378,8 @@ def room(request, room):
     })
 
 
-@never_cache
-@login_required(login_url='login')
+# @never_cache
+# @login_required(login_url='login')
 def checkview(request):
    room = request.POST.get('room_name', '')
    username = request.POST.get('username', '')
@@ -395,8 +395,8 @@ def checkview(request):
 from django.views.decorators.csrf import csrf_exempt
 from django.utils.decorators import method_decorator
 from .models import PostModel
-@never_cache
-@login_required(login_url='login')
+# @never_cache
+# @login_required(login_url='login')
 @method_decorator(csrf_exempt, name='dispatch')
 def send(request):
     if request.method == 'POST':
@@ -425,16 +425,16 @@ def send(request):
 
     return JsonResponse({'error': 'Invalid request method'})
 
-@never_cache
-@login_required(login_url='login')
+# @never_cache
+# @login_required(login_url='login')
 def getMessages(request, room):
     room_details = Room.objects.get(name=room)
 
     messages = Message.objects.filter(room=room_details.id)
     return JsonResponse({"messages":list(messages.values())})
 
-@never_cache
-@login_required(login_url='login')
+# @never_cache
+# @login_required(login_url='login')
 def getAllMessages(request):
     # username = request.GET.get('user')
     user = request.user.username  # Get the authenticated user
@@ -554,8 +554,8 @@ def get_room_name_helper(room_id):
 
 from django.http import JsonResponse
 from django.urls import reverse  
-@never_cache
-@login_required(login_url='login')
+# @never_cache
+# @login_required(login_url='login')
 def profilePage(request):
     user = request.user
     if request.method == 'POST':
@@ -605,8 +605,8 @@ def termsPage(request):
 from django.shortcuts import render
 from django.core.mail import send_mail
 from django.http import JsonResponse
-@never_cache
-@login_required(login_url='login')
+# @never_cache
+# @login_required(login_url='login')
 def submit_contact_formPage(request):
     if request.method == 'POST':
         # Get form data
