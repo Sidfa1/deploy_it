@@ -100,6 +100,11 @@ class UserModelAPI_ID(APIView):
 
 
 def indexPage(request):
+    try:
+        if request.session.get('userId'):
+            return redirect('base')
+    except:
+        return render(request, 'Login/index.html')
     return render(request, 'Login/index.html')
 
 def activate(request, uidb64, token):
@@ -176,6 +181,8 @@ def loginPage(request):
         user = authenticate(request,email=uname,password=upass)
         if user is not None:
             login(request,user)
+            print(user.id)
+            request.session['userId'] = True
             return redirect('base')
         else:
             messages.error(request, "Incorrect credentials. Please try again.")
@@ -185,15 +192,23 @@ def loginPage(request):
 # @never_cache
 # @login_required(login_url='login')
 def basePage(request):
-    return render(request,'Login/base.html')
+    try:
+        if request.session.get('userId'):
+            return render(request,'Login/base.html')
+    except:
+        return redirect('login')
+    return redirect('login')
+    
 
 def logout_view(request):
+    del request.session['userId']
+
     logout(request)
-    return redirect(reverse('index')
-                    )
+    return redirect(reverse('index'))
 
 def submit_form(request):
     return redirect('base')
+
 # @never_cache
 # @login_required(login_url='login')
 def edit_profilePage(request):
