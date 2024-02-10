@@ -189,7 +189,7 @@ def loginPage(request):
            
     return render(request,'Login/login.html')
 
-@never_cache
+# @never_cache
 # @login_required(login_url='login')
 def basePage(request):
     try:
