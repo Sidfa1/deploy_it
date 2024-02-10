@@ -176,7 +176,7 @@ CORS_ORIGIN_ALLOW_ALL = True
 CORS_ORIGIN_WHITELIST = [
 #    'http://3.83.235.188:8000',
     # 'http://172.174.250.190:8000',
-    'http://98.70.12.179:8000',
+    'http://98.70.12.179:5000',
 
 ]
 
