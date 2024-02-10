@@ -118,7 +118,7 @@ DATABASES = {
 "default": {
     "ENGINE": "djongo",
     'ENFORCE_SCHEMA': False,
-    "NAME": "Flyshare-roomlocalhost1",  # name of your DB which you want to access
+    "NAME": "Flyshare-roomlocalhost12",  # name of your DB which you want to access
     "CLIENT": {
         'host': 'mongodb+srv://Tharun:Tharun%401316@cluster0.ng51njk.mongodb.net/',  # your db_url if not hosted then localhost
         'port': 27017,  # port e.g. 27017
@@ -175,7 +175,8 @@ CORS_ORIGIN_ALLOW_ALL = True
 
 CORS_ORIGIN_WHITELIST = [
 #    'http://3.83.235.188:8000',
-    'http://172.174.250.190:8000',
+    # 'http://172.174.250.190:8000',
+    'http://98.70.12.179:8000',
 
 ]
 
@@ -209,8 +210,8 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'sampleuser788@gmail.com'
-EMAIL_HOST_PASSWORD = 'vcdl vzmt ulbe hobq'
+EMAIL_HOST_USER = 'flyshare.services@gmail.com'
+EMAIL_HOST_PASSWORD = 'uinciigtguegnqcy'
 
 # AUTHENTICATION_BACKENDS = [
 #     'django.contrib.auth.backends.ModelBackend',
