@@ -467,8 +467,9 @@ def termsPage(request):
 from django.shortcuts import render
 from django.core.mail import send_mail
 from django.http import JsonResponse
-@never_cache
-@login_required(login_url='login')
+
+
+
 def submit_contact_formPage(request):
     if request.method == 'POST':
         # Get form data
