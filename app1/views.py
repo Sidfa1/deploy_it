@@ -249,49 +249,54 @@ def checkview(request):
        return redirect('login')
    return redirect('login')
 
-from django.views.decorators.csrf import csrf_exempt
-from django.utils.decorators import method_decorator
+
 from .models import PostModel
-# @never_cache
+@never_cache
 # @login_required(login_url='login')
-@method_decorator(csrf_exempt, name='dispatch')
+# @method_decorator(csrf_exempt, name='dispatch')
 def send(request):
-    if request.method == 'POST':
+    try:
+        if request.session.get('userId'):
+            if request.method == 'POST':
         
         # post_model = get_object_or_404(PostModel, id=post_model_id)
 
-        username = request.POST.get('username', '')
-        room_id = request.POST.get('room_id', '')
-        message = request.POST.get('message', '')
-        image = request.FILES.get('image', None)
+                username = request.POST.get('username', '')
+                room_id = request.POST.get('room_id', '')
+                message = request.POST.get('message', '')
+                image = request.FILES.get('image', None)
         # baggage_number=post_model
 
-        if not (username and room_id and (message or image)):
-            return JsonResponse({'error': 'Invalid parameters'})
+            if not (username and room_id and (message or image)):
+                return JsonResponse({'error': 'Invalid parameters'})
 
-        if image:
+            if image:
             # Handle image upload
-            new_message = Message.objects.create(user=username, room=room_id, image=image, value = message)
+                new_message = Message.objects.create(user=username, room=room_id, image=image, value = message)
 
-        else:
+            else:
             # Handle text message
-            new_message = Message.objects.create(user=username, room=room_id, value=message)
+                new_message = Message.objects.create(user=username, room=room_id, value=message)
 
-        new_message.save()
-        return JsonResponse({'status': 'Message sent successfully'})
+            new_message.save()
+            return JsonResponse({'status': 'Message sent successfully'})
 
-    return JsonResponse({'error': 'Invalid request method'})
+        return JsonResponse({'error': 'Invalid request method'})
+    except:
+        return redirect('login')
+    
 
-# @never_cache
-# @login_required(login_url='login')
+
+@never_cache
+@login_required(login_url='login')
 def getMessages(request, room):
     room_details = Room.objects.get(name=room)
 
     messages = Message.objects.filter(room=room_details.id)
     return JsonResponse({"messages":list(messages.values())})
 
-# @never_cache
-# @login_required(login_url='login')
+@never_cache
+@login_required(login_url='login')
 def getAllMessages(request):
     # username = request.GET.get('user')
     user = request.user.username  # Get the authenticated user
@@ -411,8 +416,8 @@ def get_room_name_helper(room_id):
 
 from django.http import JsonResponse
 from django.urls import reverse  
-# @never_cache
-# @login_required(login_url='login')
+@never_cache
+@login_required(login_url='login')
 def profilePage(request):
     user = request.user
     if request.method == 'POST':
@@ -462,8 +467,8 @@ def termsPage(request):
 from django.shortcuts import render
 from django.core.mail import send_mail
 from django.http import JsonResponse
-# @never_cache
-# @login_required(login_url='login')
+@never_cache
+@login_required(login_url='login')
 def submit_contact_formPage(request):
     if request.method == 'POST':
         # Get form data

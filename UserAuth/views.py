@@ -189,7 +189,7 @@ def loginPage(request):
            
     return render(request,'Login/login.html')
 
-# @never_cache
+@never_cache
 # @login_required(login_url='login')
 def basePage(request):
     try:
@@ -209,7 +209,7 @@ def logout_view(request):
 def submit_form(request):
     return redirect('base')
 
-# @never_cache
+@never_cache
 # @login_required(login_url='login')
 def edit_profilePage(request):
     try:
@@ -220,7 +220,7 @@ def edit_profilePage(request):
     return redirect('login')        
 
 
-# @never_cache
+@never_cache
 # @login_required(login_url='login')
 def profilePage(request):
     try:
@@ -234,7 +234,7 @@ def profilePage(request):
 
     # return render(request, 'Login/profile.html')
 
-# @never_cache
+@never_cache
 # @login_required(login_url='login')
 def change_passwordPage(request):
     try:
@@ -244,7 +244,7 @@ def change_passwordPage(request):
         return redirect('login')
     return redirect('login')
 
-# @never_cache
+@never_cache
 # @login_required(login_url='login')
 def verifyPage(request):
     try:
