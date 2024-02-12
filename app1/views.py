@@ -426,7 +426,6 @@ def profilePage(request):
             user.profile_picture.delete(save=True)  # This deletes the profile picture file from the storage
             user.profile_picture = None  # Set the profile picture field to None in the database
             user.save()
-            return JsonResponse({'message': 'Profile picture removed successfully'})
        
         profile_picture = request.FILES.get('profile_picture') 
         first_name = request.POST.get('first_name')
@@ -449,7 +448,6 @@ def profilePage(request):
         return redirect(reverse('profile') + '#Edit Profile')
     user_posts = request.user.postmodel_set.all()
     return render(request, 'Login/profile.html', {'user_posts': user_posts})
-
 
 
 

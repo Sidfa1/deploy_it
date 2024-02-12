@@ -245,11 +245,6 @@ def change_passwordPage(request):
     return redirect('login')
 
 @never_cache
-# @login_required(login_url='login')
 def verifyPage(request):
-    try:
-        if request.session.get('userId'):
-            return render(request, 'Login/verify.html')
-    except:
-        return redirect('login')
-    return redirect('login')
+    return render(request, 'Login/verify.html')
+
