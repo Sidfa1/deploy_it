@@ -212,23 +212,25 @@ from .models import Room, Message
 # @never_cache
 # @login_required(login_url='login')
 def room(request, room):
-    try:
-        if request.session.get('userId'):
-             username = request.GET.get('username')
-             room_obj, created = Room.objects.get_or_create(name=room)
-             if not room_obj.is_active:
-                 room_obj.is_active = True
-                 room_obj.save()
-                 messages = Message.objects.filter(room=room_obj)
-             return render(request, 'room.html', {
-        'username': username,
-        'room': room,
-        'room_details': room_obj,
-        'messages': messages,
-    })
-    except:
-        return redirect('login')
+    if request.session.get('userId'):
+        username = request.GET.get('username')
+        room_obj, created = Room.objects.get_or_create(name=room)
+        messages = Message.objects.none()  # Initialize as empty queryset
+
+        if not room_obj.is_active:
+            room_obj.is_active = True
+            room_obj.save()
+            messages = Message.objects.filter(room=room_obj)
+
+        return render(request, 'room.html', {
+            'username': username,
+            'room': room,
+            'room_details': room_obj,
+            'messages': messages,
+        })
     return redirect('login')
+
+    
 
 
 # @never_cache
@@ -414,6 +416,9 @@ def get_room_name_helper(room_id):
 
 # remove function for profile 
 
+
+
+
 from django.http import JsonResponse
 from django.urls import reverse  
 @never_cache
@@ -426,7 +431,6 @@ def profilePage(request):
             user.profile_picture.delete(save=True)  # This deletes the profile picture file from the storage
             user.profile_picture = None  # Set the profile picture field to None in the database
             user.save()
-            return JsonResponse({'message': 'Profile picture removed successfully'})
        
         profile_picture = request.FILES.get('profile_picture') 
         first_name = request.POST.get('first_name')

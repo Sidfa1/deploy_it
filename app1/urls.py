@@ -23,7 +23,7 @@ urlpatterns = [
     path('chats/', views.home, name='home'),
     path('<int:room>/', views.room, name='room'),
     path('checkview', views.checkview, name='checkview'),
-    path('send', views.send, name='send'),
+    path('send/', views.send, name='send'),
     path('getMessages/<int:room>/', views.getMessages, name='getMessages'),
         path('getAllMessages/', views.getAllMessages, name='getMessages'),
 
