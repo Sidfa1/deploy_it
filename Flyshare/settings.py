@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-5!j$(k*=hstmjq27m+t0q)^qic%-3x_+sf@v1q%^hfboas5wdu
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-
+APPEND_SLASH = False
 ALLOWED_HOSTS = ["*"]
 
 AUTH_USER_MODEL = 'UserAuth.UserModel'
@@ -52,7 +52,7 @@ CACHES = {
 }
 
 SESSION_ENGINE = 'django.contrib.sessions.backends.db'
-SESSION_COOKIE_AGE = 60
+SESSION_COOKIE_AGE = 3600
 SESSION_COOKIE_SECURE = False
 MIDDLEWARE = [
 'django.middleware.security.SecurityMiddleware',
@@ -165,7 +165,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Kolkata'
 
 USE_I18N = True
 

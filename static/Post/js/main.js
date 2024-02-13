@@ -165,7 +165,7 @@ function showSuccessMessage() {
   }).then((result) => {
     // Redirect to the specified URL after the Swal modal is closed
     if (result.dismiss === Swal.DismissReason.timer) {
-      window.location.href = `/app1/get-post`;
+      window.location.href = `/app1/get-post/`;
     }
   });
 }

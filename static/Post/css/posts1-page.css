@@ -49,24 +49,26 @@ flex-direction: row;
 justify-content: center;
 }
 .custom-color{
-background-color: #581ed6;
-border: #581ed6;
+background-color: #4168bb;
+border: #4168bb;
 }
 .custom-color:disabled{
   background-color: lightgray;    
-  border: #8c66dd;
+  border: #afc1e8;
   }
 .custom-color:hover {
-background-color: #8c66dd;
-border: #8c66dd;
+background-color: #afc1e8;
+border: #afc1e8;
+color: black;
 }
 .verify{
-  background-color: #581ed6;
-border: #581ed6;
+  background-color: #4168bb;
+border: #4168bb;
 }
 .verify:hover{
-  background-color: #8c66dd !important;
-border: #8c66dd;
+  background-color: #afc1e8 !important;
+border: #afc1e8;
+color: black;
 }
 
 /* .top{
@@ -76,7 +78,7 @@ border: #8c66dd;
 } */
 .custom-color:focus,
 .custom-color:active {
-background-color:  #8c66dd !important;
+background-color:  #afc1e8 !important;
 /* You can add more styles if needed */
 }
 .card-body img{
@@ -259,7 +261,7 @@ font-size: 26px;
 
 .back-link {
 text-decoration: none;
-color: #581ed6; /* Change color as needed */
+color: #4168bb; /* Change color as needed */
 }
 
 .back-arrow {

@@ -109,7 +109,7 @@ if (!albumDiv) {
 async function fetchData(flightNumber, source, destination, dateOfJourney) {
   try {
     const response = await fetch(
-      `http://98.70.12.179:8000/app1/postAPI/?flight_number=${flightNumber}&source=${source}&destination=${destination}&date_of_journey=${dateOfJourney}`
+      `http://127.0.0.1:8000/app1/postAPI/?flight_number=${flightNumber}&source=${source}&destination=${destination}&date_of_journey=${dateOfJourney}`
     );
  
     if (!response.ok) {

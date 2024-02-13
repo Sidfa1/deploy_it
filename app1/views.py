@@ -236,20 +236,16 @@ def room(request, room):
 # @never_cache
 # @login_required(login_url='login')
 def checkview(request):
-   
-   try:
-       if request.session.get('userId'):
-           room = request.POST.get('room_name', '')
-           username = request.POST.get('username', '')
-           if Room.objects.filter(name=room).exists():
-               return redirect('/app1/'+room+'/?username='+username)
-           else:
-               new_room = Room.objects.create(name=room)
-               new_room.save()
-               return redirect('/app1/'+room+'/?username='+username)
-   except:
-       return redirect('login')
-   return redirect('login')
+
+    room = request.POST.get('room_name', '')
+    username = request.POST.get('username', '')
+    if Room.objects.filter(name=room).exists():
+        return redirect('/app1/'+room+'/?username='+username)
+    else:
+        new_room = Room.objects.create(name=room)
+        new_room.save()
+        return redirect('/app1/'+room+'/?username='+username)
+
 
 
 from .models import PostModel
