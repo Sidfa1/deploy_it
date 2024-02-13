@@ -177,6 +177,10 @@
             background-color: #581ed6;
             color: white;
         }
+        #remove-picture1{
+            background-color: #581ed6;
+            color: white;
+        }
     .post-flex-container {
     display: flex;
     flex-wrap: wrap;
@@ -350,9 +354,9 @@
                                             <div class="ml-3">
                                                 <input type="hidden" name="remove_picture" id="remove-picture-input" value="">
                                                 <input type="file" id="file-input1" style="display: none;" name="profile_picture" accept="image/*">
-                                                <button type="button" id="remove-picture" class="btn" onclick="document.getElementById('file-input1').click()">Upload</button>
+                                                <button type="button" id="remove-picture1" class="btn" onclick="document.getElementById('file-input1').click()">Upload</button>
                                                 <!-- <input type="file" id="file-input2" style="display: none;" name="profile_picture" accept="image/*"> -->
-                                                <button type="button" id="remove-picture" class="btn" onclick="removePicture()">Remove</button>
+                                                <button type="button" id="remove-picture" class="btn">Remove</button>
                                             </div>
                                         </div>
                                     </div>
@@ -616,19 +620,7 @@
         // Handle cancel button click
         // Handle cancel button click
        
-       document.addEventListener("DOMContentLoaded", function () {
-        
        
-            const removePictureButton = document.getElementById("remove-picture");
-            removePictureButton.addEventListener("click", function () {
-               
-                document.getElementById('remove-picture-input').value = 'true';
-       
-                document.getElementById('edit-profile-form').submit();
-            });
-        });
-   
- 
     });
    
    const allSideMenu = document.querySelectorAll('#sidebar .side-menu.top li a');
@@ -1011,6 +1003,21 @@
       });
   });
   </script>
-  
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const removePictureButton = document.getElementById("remove-picture");
+        removePictureButton.addEventListener("click", function () {
+            console.log("Button clicked!");
+            // Ask for confirmation
+            const confirmed = window.confirm("Are you sure you want to remove the picture?");
+            if (confirmed) {
+                // If user confirms, set the value of the remove-picture-input to 'true'
+                document.getElementById('remove-picture-input').value = 'true';
+                // Submit the form
+                document.getElementById('edit-profile-form').submit();
+            }
+        });
+    });
+</script>
 </body>
 </html>

@@ -1,4 +1,4 @@
-/* Poppins FONT */
+
 @import url('https://fonts.googleapis.com/css2?family=Poppins');
  
 *{  
@@ -8,7 +8,7 @@
     font-family: 'Poppins', sans-serif;
 }
 body{
-    background: url(https://img.freepik.com/free-vector/biophilic-design-workspace-abstract-concept-illustration-biophilic-room-eco-friendly-workspace-green-office-design-trend-bring-outdoors-indoors-vertical-garden_335657-114.jpg?size=626&ext=jpg&ga=GA1.1.1856809106.1705679310&semt=ais);
+    /* background: url(https://img.freepik.com/free-vector/biophilic-design-workspace-abstract-concept-illustration-biophilic-room-eco-friendly-workspace-green-office-design-trend-bring-outdoors-indoors-vertical-garden_335657-114.jpg?size=626&ext=jpg&ga=GA1.1.1856809106.1705679310&semt=ais); */
     /* background-size: cover; */
     background-repeat: no-repeat;
     background-attachment: fixed;
@@ -20,7 +20,7 @@ body{
     top: 20px;
     left: 20px;
     font-size: 20px;
-    color: #581ed6;
+    color: #4168bb;
   }
  
   .back-link {
@@ -30,11 +30,11 @@ body{
  
   .back-arrow {
     margin-right: 1px;
-    color: #581ed6;
+    color: #4168bb;
   }
   .back-button a {
     /* margin-right: 5px; */
-    color: #581ed6;
+    color: #4168bb;
   }
  
 .wrapper{
@@ -68,7 +68,7 @@ body{
     display: flex;
     flex-direction: column;
     transition: .5s ease-in-out;
-    background-color: #581ed6;
+    background-color: #4168bb;
     border-radius: 10px;
     padding: 20px;
     margin-right: auto;
