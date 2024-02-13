@@ -959,45 +959,58 @@
     }
 </script> 
 <script>
-    document.addEventListener("DOMContentLoaded", function() {
-        var fileInput = document.getElementById('file-input1');
-        var updateButton = document.querySelector('.btn-primary');
-    
-        fileInput.addEventListener('change', function() {
-            if (fileInput.files.length > 0) {
-                updateButton.disabled = false;
-            } else {
-                updateButton.disabled = true; // Disable the button if no file is selected
-            }
-        });
-    
-        updateButton.addEventListener('click', function(event) {
-            if (fileInput.files.length === 0) {
-                event.preventDefault(); // Prevent form submission if no file is selected
-                alert('Please select an image to update.');
-            } else {
-                var form = document.getElementById('edit-profile-form');
-                var formData = new FormData(form);
-    
-                fetch(form.action, {
-                    method: 'POST',
-                    body: formData,
-                })
-                .then(response => {
-                    if (response.ok) {
-                        alert('Profile updated successfully!');
-                        location.reload();
-                    } else {
-                        alert('Error updating profile.');
-                    }
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                    alert('An error occurred while updating profile.');
-                });
-            }
-        });
-    });
-    </script>
+  document.addEventListener("DOMContentLoaded", function() {
+      var fileInput = document.getElementById('file-input1');
+      var profilePicture = document.getElementById('profile-picture');
+      var updateButton = document.querySelector('.btn-primary');
+  
+      fileInput.addEventListener('change', function() {
+          if (fileInput.files.length > 0) {
+              var reader = new FileReader();
+              reader.onload = function(event) {
+                  profilePicture.src = event.target.result;
+              };
+              reader.readAsDataURL(fileInput.files[0]);
+              updateButton.disabled = false;
+          } else {
+              // If no file is selected, revert to the default profile picture or hide the image
+              {% if user.profile_picture %}
+                  profilePicture.src = "{{ user.profile_picture.url }}";
+              {% else %}
+                  profilePicture.style.display = 'none';
+              {% endif %}
+              updateButton.disabled = true; // Disable the button if no file is selected
+          }
+      });
+  
+      updateButton.addEventListener('click', function(event) {
+          if (fileInput.files.length === 0) {
+              event.preventDefault(); // Prevent form submission if no file is selected
+              alert('Please select an image to update.');
+          } else {
+              var form = document.getElementById('edit-profile-form');
+              var formData = new FormData(form);
+  
+              fetch(form.action, {
+                  method: 'POST',
+                  body: formData,
+              })
+              .then(response => {
+                  if (response.ok) {
+                      alert('Profile updated successfully!');
+                      location.reload();
+                  } else {
+                      alert('Error updating profile.');
+                  }
+              })
+              .catch(error => {
+                  console.error('Error:', error);
+                  alert('An error occurred while updating profile.');
+              });
+          }
+      });
+  });
+  </script>
+  
 </body>
 </html>
