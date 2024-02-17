@@ -1,234 +1,249 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<!-- Coding by CodingNepal | www.codingnepalweb.com-->
+<html lang="en" dir="ltr">
   <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" href="{% static 'Login/images/fevflightworld.png' %}" />
-    <link
-      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="{% static 'Login/CSS/signup.css' %}" />
+    <meta charset="UTF-8">
     <title>FLY SHARE | Login & Registration</title>
-    <style>
-      .container {
-        max-width: 600px;
-        margin: 20px auto;
-        padding: 20px;
-        background-color: #581ed6;
-        border: 1px solid #ddd;
-        border-radius: 8px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-      }
-
-      h2,
-      h3 {
-        color: white;
-        margin-bottom: 10px;
-        margin-top: 20px; /* Add margin between headings and content */
-      }
-      ul {
-        list-style-type: disc;
-        margin-left: 20px;
-        color: white;
-      }
-    </style>
-  </head>
-
-  <body>
+    <link rel="stylesheet" href="{% static 'Login/CSS/login.css' %}" >
+    <!-- Fontawesome CDN Link -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   </head>
+<body>
     <div class="back-button">
-      <a href="{% url 'index' %}" class="back-link">
-        <span class="back-arrow">&lt;</span> Back
-      </a>
+        <a href="{% url 'index' %}" class="back-link">
+          <span class="back-arrow">&lt;</span> Back
+        </a>
+      </div>
+  <div class="container">
+    <input type="checkbox" id="flip">
+    <div class="cover">
+      <div class="front">
+        <img src="https://img.freepik.com/free-vector/key-concept-illustration_114360-6305.jpg?size=626&ext=jpg&ga=GA1.1.1894579647.1706434369&semt=ais" alt="">
+        <!-- <div class="text">
+          <span class="text-1">Every new friend is a <br> new adventure</span>
+          <span class="text-2">Let's get connected</span>
+        </div> -->
+      </div>
+      <div class="back">
+        <!--<img class="backImg" src="images/backImg.jpg" alt="">-->
+        <div class="text">
+          <span class="text-1">Complete miles of journey <br> with one step</span>
+          <span class="text-2">Let's get started</span>
+        </div>
+      </div>
     </div>
-    <div class="wrapper">
-      <div class="register-container">
-        {% if messages %} {% for message in messages %}
-        <div class="alert alert-danger" id="error-message">{{ message }}</div>
-        <script>
-          // Set a timeout to hide the error message after 5 seconds
-          setTimeout(function () {
-            var errorMessage = document.getElementById("error-message");
-            if (errorMessage) {
-              errorMessage.style.display = "none";
-            }
-          }, 5000);
-        </script>
-        {% endfor %} {% endif %}
-        <form
+    <div class="forms">
+        <div class="form-content">
+         
+  
+        <div class="signup-form">
+            {% if messages %} {% for message in messages %}
+            <div class="alert alert-danger" id="error-message">{{ message }}</div>
+            <script>
+              // Set a timeout to hide the error message after 5 seconds
+              setTimeout(function () {
+                var errorMessage = document.getElementById("error-message");
+                if (errorMessage) {
+                  errorMessage.style.display = "none";
+                }
+              }, 5000);
+            </script>
+            {% endfor %} {% endif %}
+          <div class="title">Signup</div>
+          <form
           action=""
           method="POST"
           onsubmit="return checkPassword(event);"
           id="registration-form"
         >
           {% csrf_token %}
-          <div class="Top">
-            <header>Sign Up</header>
-          </div>
-          <div class="two-forms">
-            <div class="input-box">
-              <input
+            <div class="input-boxes">
+              <div class="input-box">
+                <i class="fas fa-user"></i>
+                <input
                 type="text"
                 class="input-field"
                 placeholder="Firstname"
                 name="first_name"
                 required
-              />
-              <i class="bx bx-user"></i>
-            </div>
-            <div class="input-box">
-              <input
+              />    
+                  <div class="input-box">
+                    <i class="fas fa-user"></i>
+                    <input
+                    type="text"
+                    class="input-field"
+                    placeholder="Lastname"
+                    name="last_name"
+                    required
+                  /></div>
+              </div>
+              <div class="input-box">
+                <i class="fas fa-user"></i>
+                <input
                 type="text"
                 class="input-field"
-                placeholder="Lastname"
-                name="last_name"
-              />
-              <i class="bx bx-user"></i>
-            </div>
-          </div>
-          <div class="input-box">
-            <input
-              type="text"
-              class="input-field"
-              placeholder="Username"
-              name="username"
-              id="username"
-              required
-            />
-            <i class="bx bx-user"></i>
-            <p id="username-reminder" style="color: grey"></p>
-          </div>
-          <div class="input-box">
-            <input
-              type="text"
-              class="input-field"
-              placeholder="Email"
-              name="email"
-              required
-            />
-            <i class="bx bx-envelope"></i>
-          </div>
-          <div class="input-box">
-            <input
-              type="password"
-              class="input-field"
-              placeholder="Password"
-              name="password1"
-              id="password"
-              required
-            />
-            <i class="bx bx-lock-alt"></i>
-            <input
+                placeholder="Username"
+                name="username"
+                id="username"
+                required
+              />            </div>
+              <div class="input-box">
+                <i class="fas fa-envelope"></i>
+                <input
+                type="text"
+                class="input-field"
+                placeholder="Email"
+                name="email"
+                required
+              />              </div>
+              <div class="input-box">
+                <i class="fas fa-lock"></i>
+                <input
+                type="password"
+                class="input-field"
+                placeholder="Password"
+                name="password1"
+                id="password"
+                required
+              />   </div>
+              <div class="input-box">
+                <i class="fas fa-lock"></i>
+                <input
               type="password"
               class="input-field"
               placeholder="Confirm Password"
               name="password2"
               id="cnfrm-password"
               required
-            />
-            <i class="bx bx-lock-alt"></i>
-          </div>
-          <div id="password-error" style="color: red"></div>
-          <div class="input-box">
-            <input
+            />      
+                 </div>
+              <div class="button input-box">
+                <input
               type="submit"
               class="submit"
               value="Register"
               name="register"
             />
-          </div>
-        </form>
-
-        <div class="two-col">
-          <div class="bottom">
-            <span
-              >Have an account?
-              <a href="{% url 'login' %}" style="color: #ffa500">Login</a></span
-            >
-          </div>
-        </div>
-      </div>
-
-      {% comment %}
-      <div class="container">
-        <h2>Criteria</h2>
-        <ul>
-          <li>Once you registered, username cannot be changed.</li>
-          <li>
-            Enter a valid Email-id.
-            <span class="message"
-              >(Note: Each email ID can only be used once.)</span
-            >
-          </li>
-          <h3>Password must meet the following criteria:</h3>
-          <li>Minimum length 8 Characters.</li>
-          <li>At least one uppercase letter.</li>
-          <li>At least one lowercase letter.</li>
-          <li>At least one numeric digit.</li>
-          <li>At least one special character.</li>
-        </ul>
-      </div>
-      {% endcomment %}
+              </div>
+              <div id="password-error" style="color: red"></div>
+    
+              <div class="text sign-up-text">Already have an account?  <a href="{% url 'login' %}" style="color: #ffa500"><b>Login</b></a> </div>
+            </div>
+      </form>
     </div>
+    <div class="login-form">
+     
+      <!-- <form method="POST">
+          {% csrf_token %} -->
+          <div class="top">
+      <div class="title">Login</div>
 
-    <script>
-      function checkPassword(event) {
-        event.preventDefault(); // Prevent form submission
+      <div class="input-boxes">
+        <div class="input-box">
+          <i class="fas fa-envelope"></i>
+          <input
+          type="text"
+          class="input-field"
+          placeholder="Email"
+          name="username"
+          required
+        />
+        </div>
+        <div class="input-box">
+          <i class="fas fa-lock"></i>
+          <input
+          type="password"
+          class="input-field"
+          placeholder="Password"
+          name="user_password"
+          required
+        />
+        </div>
+        <div class="text"><a href="{% url 'password_reset' %}#reset"
+          >Forgot password?</a
+        ></div>
+        <div class="button input-box">
+          <input
+          type="submit"
+          class="submit"
+          value="Sign In"
+          name="sign_in"
+        />
+        </div>
+        <div class="text sign-up-text">Don't have an account?  <a href="{% url 'register' %}" style="color: #ffa500"
+          ></a
+        > </div>
+      </div>
+  </form>
+</div>
+  </div>
+    </div>
+   
+  </div>
+  <script>
+    // Wait for the DOM to be ready
+    document.addEventListener("DOMContentLoaded", function () {
+      // Set the duration in milliseconds (e.g., 10 seconds)
+      var duration = 5000;
 
-        let password = document.getElementById("password").value;
-        let cnfrmPassword = document.getElementById("cnfrm-password").value;
-        let errorDiv = document.getElementById("password-error");
+      // Find the messages and hide them after the specified duration
+      var messages = document.querySelector(".messages");
+      if (messages) {
+        setTimeout(function () {
+          messages.style.display = "none";
+        }, duration);
+      }
+    });
+  </script>
+  <script>
+    function checkPassword(event) {
+      event.preventDefault(); // Prevent form submission
 
-        // Add your password validations here
-        var minLength = 8;
-        var hasUpperCase = /[A-Z]/.test(password);
-        var hasLowerCase = /[a-z]/.test(password);
-        var hasNumber = /\d/.test(password);
-        var hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/.test(password);
-        if (password.length !== 0) {
-          if (password === cnfrmPassword) {
-            if (
-              password.length >= minLength &&
-              hasUpperCase &&
-              hasLowerCase &&
-              hasNumber
-            ) {
-              errorDiv.textContent = ""; // Clear the error message
-              // errorDiv.style.backgroundColor = "#1dcd59";
-              document.getElementById("registration-form").submit(); // Submit the form
-            } else {
-              let errorMessage = "Password must meet the following criteria:\n";
+      let password = document.getElementById("password").value;
+      let cnfrmPassword = document.getElementById("cnfrm-password").value;
+      let errorDiv = document.getElementById("password-error");
 
-              if (password.length < minLength) {
-                errorMessage += "- Minimum length is " + minLength + "\n";
-              }
-
-              if (!hasUpperCase) {
-                errorMessage += "- At least one uppercase letter\n";
-              }
-
-              if (!hasLowerCase) {
-                errorMessage += "- At least one lowercase letter\n";
-              }
-
-              if (!hasNumber) {
-                errorMessage += "- At least one numeric digit\n";
-              }
-              if (!hasSpecialChar) {
-                errorMessage += "- At least one special character\n";
-              }
-              errorDiv.textContent = errorMessage;
-              // errorDiv.style.backgroundColor = "#ff4d4d";
-
-              // Set a timeout to clear the error message after 5 seconds
-              setTimeout(function () {
-                errorDiv.textContent = "";
-              }, 5000);
-            }
+      // Add your password validations here
+      var minLength = 8;
+      var hasUpperCase = /[A-Z]/.test(password);
+      var hasLowerCase = /[a-z]/.test(password);
+      var hasNumber = /\d/.test(password);
+      var hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/.test(password);
+      if (password.length !== 0) {
+        if (password === cnfrmPassword) {
+          if (
+            password.length >= minLength &&
+            hasUpperCase &&
+            hasLowerCase &&
+            hasNumber
+          ) {
+            errorDiv.textContent = ""; // Clear the error message
+            // errorDiv.style.backgroundColor = "#1dcd59";
+            document.getElementById("registration-form").submit(); // Submit the form
           } else {
-            errorDiv.textContent = "Passwords don't match";
+            let errorMessage = "Password must meet the following criteria:\n";
+
+            if (password.length < minLength) {
+              errorMessage += "- Minimum length is " + minLength + "\n";
+            }
+
+            if (!hasUpperCase) {
+              errorMessage += "- At least one uppercase letter\n";
+            }
+
+            if (!hasLowerCase) {
+              errorMessage += "- At least one lowercase letter\n";
+            }
+
+            if (!hasNumber) {
+              errorMessage += "- At least one numeric digit\n";
+            }
+            if (!hasSpecialChar) {
+              errorMessage += "- At least one special character\n";
+            }
+            errorDiv.textContent = errorMessage;
             // errorDiv.style.backgroundColor = "#ff4d4d";
 
             // Set a timeout to clear the error message after 5 seconds
@@ -237,7 +252,7 @@
             }, 5000);
           }
         } else {
-          errorDiv.textContent = "Password can't be empty!";
+          errorDiv.textContent = "Passwords don't match";
           // errorDiv.style.backgroundColor = "#ff4d4d";
 
           // Set a timeout to clear the error message after 5 seconds
@@ -245,19 +260,28 @@
             errorDiv.textContent = "";
           }, 5000);
         }
-      }
-    </script>
-    <script>
-      var username = document.getElementById("username").value;
-      var usernameReminder = document.getElementById("username-reminder");
-
-      if (username !== "") {
-        usernameReminder.innerHTML =
-          "Note: Once the username is entered, it cannot be changed.";
       } else {
-        usernameReminder.innerHTML = "";
+        errorDiv.textContent = "Password can't be empty!";
+        // errorDiv.style.backgroundColor = "#ff4d4d";
+
+        // Set a timeout to clear the error message after 5 seconds
+        setTimeout(function () {
+          errorDiv.textContent = "";
+        }, 5000);
       }
-    </script>
-  </body>
+    }
+  </script>
+  <script>
+    var username = document.getElementById("username").value;
+    var usernameReminder = document.getElementById("username-reminder");
+
+    if (username !== "") {
+      usernameReminder.innerHTML =
+        "Note: Once the username is entered, it cannot be changed.";
+    } else {
+      usernameReminder.innerHTML = "";
+    }
+  </script>
+</body>
 </html>
 <div>{% block content %} {% endblock %}</div>

@@ -226,7 +226,7 @@
     border: 2px solid black;
     border-radius: 5px;
     max-width: 300px;
-    background-color: cornflowerblue;
+  
     margin-right: 10px; /* Add margin to create space between the containers */
 }
 
@@ -434,12 +434,12 @@
 </div>
 <div id="container-wrapper">
     <ul id="chat-rooms-container" class="submenu">
-        <h2>Created Rooms</h2>
+        <!-- <h2>Created Rooms</h2> -->
         {% for post in user_posts %}
             {% if post.baggage_number %}
                 <li>
                     <a href="{% url 'room' room=post.baggage_number %}">
-                        <span class="text">{{ post.passenger_name }} - Room {{ post.baggage_number }}</span>
+                        <span class="text">{{ post.passenger_name }} - Created Room - {{ post.baggage_number }}</span>
                     </a>
                 </li>
             {% else %}
