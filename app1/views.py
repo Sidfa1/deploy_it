@@ -471,24 +471,26 @@ from django.http import JsonResponse
 
 def submit_contact_formPage(request):
     if request.method == 'POST':
-        # Get form data
-        fname = request.POST.get('fname')
-        lname = request.POST.get('lname')
-        email = request.POST.get('email')
-        phone = request.POST.get('phone')
-        query = request.POST.get('query')
+        # Check if user is authenticated
+        if request.user.is_authenticated:
+            # Get form data
 
-        # Send email
-        send_mail(
-            'New Contact Form Submission',
-            f'Name: {fname} {lname}\nEmail: {email}\nPhone: {phone}\nQuery: {query}',
-            'your_email@example.com',  # Replace with your email address
-            ['destination_email@example.com'],  # Replace with the destination email address
-            fail_silently=False,
-        )
+            query = request.POST.get('query')
 
-        # Return JSON response indicating success
-        return JsonResponse({'success': True, 'message': 'We received your help request. We will get back to you soon.'})
+            # Compose email content
+            subject = f'Contact Form Submission - {request.user.username}'
+            message = f'Query: {query}\n\n\nSender Email: {request.user}'
 
-    # Handle cases where the request method is not POST
-    return JsonResponse({'success': False, 'message': 'Invalid request method.'})
+            try:
+                # Send email
+                send_mail(subject, message, settings.EMAIL_HOST_USER, [settings.EMAIL_HOST_USER])
+                # Return JSON response indicating success
+                return JsonResponse({'success': True, 'message': 'We received your help request. We will get back to you soon.'})
+            except Exception as e:
+                # Handle exceptions
+                return JsonResponse({'success': False, 'message': f'Failed to send email: {str(e)}'})
+        else:
+            return JsonResponse({'success': False, 'message': 'User is not authenticated.'})
+    else:
+        # Handle cases where the request method is not POST
+        return JsonResponse({'success': False, 'message': 'Invalid request method.'})
