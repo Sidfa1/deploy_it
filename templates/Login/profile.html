@@ -343,7 +343,7 @@
                 </div>
                 </a>
                 <a href="" class="profile">
-                    <img src="{% if user.profile_picture %}{{ user.profile_picture.url }}{% else %}https://th.bing.com/th/id/OIP.TouNZxZ6zY-HetqfYQ1GHQD6D6?w=216&h=215&c=7&r=0&o=5&dpr=1.5&pid=1.7{% endif %}" alt="Profile Picture">
+                    <img src="{% if user.profile_picture %}{{ user.profile_picture.url }}{% else %}https://th.bing.com/th/id/OIP.TouNZxZ6zY-HetqfYQ1GHQD6D6?w=216&h=215&c=7&r=0&o=5&dpr=1.5&pid=1.7{% endif %}" alt="">
                 </a>
             </nav>
  
@@ -362,7 +362,7 @@
                                         <!-- <label for="profile-picture" class="text-uppercase name">Profile Picture</label> -->
                                         <div class="d-flex flex-row align-items-center mt-2">
                                
-                                            <img id="profile-picture" src="{% if user.profile_picture %}{{ user.profile_picture.url }}{% else %}https://th.bing.com/th/id/OIP.TouNZxZ6zY-HetqfYQ1GHQD6D6?w=216&h=215&c=7&r=0&o=5&dpr=1.5&pid=1.7{% endif %}" alt="Profile Picture" width="60" class="rounded" style="pointer-events: none;">
+                                            <img id="profile-picture" src="{% if user.profile_picture %}{{ user.profile_picture.url }}{% else %}https://th.bing.com/th/id/OIP.TouNZxZ6zY-HetqfYQ1GHQD6D6?w=216&h=215&c=7&r=0&o=5&dpr=1.5&pid=1.7{% endif %}" alt="" width="60" class="rounded" style="pointer-events: none;">
                                             <div class="ml-3">
                                                 <input type="hidden" name="remove_picture" id="remove-picture-input" value="">
                                                 <input type="file" id="file-input1" style="display: none;" name="profile_picture" accept="image/*">
