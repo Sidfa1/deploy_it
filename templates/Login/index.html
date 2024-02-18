@@ -247,30 +247,12 @@
         flexibility of the modern web with the control and compliance your
         business needs.
       </p>
-      <a href="#contact"><b>Need help?</b></a>
+      <a href="{% url 'login' %}"><b>Need help?</b></a>
       <!-- </div> -->
     </div>
 
     <div class="contact-form" id="contact">
       <div>{% block content %} {% endblock %}</div>
-      <h1>Contact our team directly</h1>
-      <form id="form2" action="{% url 'submit_contact_form' %}" method="post">
-
-        {% csrf_token %}
-        
-        <!-- Your form fields here -->
-        
-        <input type="text" name="fname" placeholder="First name" required />
-        
-        <input type="text" name="lname" placeholder="Last name" required />
-        
-        <input type="email" name="email" placeholder="Email address" required />
-        
-        <textarea name="query" id="" cols="30" rows="5" placeholder="Description"></textarea>
-        
-        <button type="submit">Submit</button>
-        
-        </form>
     </div>
   </div>
   <footer>
