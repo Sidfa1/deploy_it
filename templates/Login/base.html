@@ -324,11 +324,8 @@
   <form action="{% url 'submit_contact_form' %}" method="post">
     {% csrf_token %}
     <!-- Your form fields here -->
-    <input type="text" name="fname" placeholder="First name" required />
-    <input type="text" name="lname" placeholder="Last name" required />
-    <input type="email" name="email" placeholder="Email address" required />
    
-    <textarea name="query" id="" cols="30" rows="5" placeholder="Description"></textarea>
+    <textarea name="query" id="" cols="30" rows="5" placeholder="Description" required></textarea>
     <button type="submit">Submit</button>
 </form>
 </div>
