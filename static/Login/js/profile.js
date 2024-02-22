@@ -396,7 +396,7 @@
        // const joinedChannelsContainer = document.getElementBhyId("joined-channels-container");
    
         // Hide chat rooms and joined channels initially
-        chatRoomsContainer.style.display = 'none';
+        chatRoomsContainer.style.display = 'user';
        // joinedChannelsContainer.style.display = 'none';
    
         allSideMenu.forEach(item => {
