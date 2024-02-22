@@ -36,34 +36,57 @@ class UserProfileForm(forms.ModelForm):
         fields = ['username','first_name', 'last_name', 'email','profile_picture']
 
 
-from django.contrib.auth.forms import PasswordResetForm, SetPasswordForm
-from django.contrib.auth import password_validation
-class UserPasswordResetForm(PasswordResetForm):
-    def __init__(self, *args, **kwargs):
-        super(UserPasswordResetForm, self).__init__(*args, **kwargs)
+# from django.contrib.auth.forms import PasswordResetForm, SetPasswordForm
+# from django.contrib.auth import password_validation
+# class UserPasswordResetForm(PasswordResetForm):
+#     def __init__(self, *args, **kwargs):
+#         super(UserPasswordResetForm, self).__init__(*args, **kwargs)
     
     
 
+#     email = forms.EmailField(label='', widget=forms.EmailInput(attrs={
+#         'placeholder': 'Email',
+#         'type': 'email',
+#         'name': 'email'
+#         }))
+    
+# class UserPasswordConfirmForm(SetPasswordForm):
+#     new_password1 = forms.CharField(
+#         label='',
+#         widget=forms.PasswordInput(attrs={'autocomplete': 'new-password','placeholder': 'New Password',}),
+#         strip=False,
+        
+#     )
+#     new_password2 = forms.CharField(
+#         label= '',
+#         strip=False,
+#         widget=forms.PasswordInput(attrs={'autocomplete': 'new-password','placeholder': 'Confirm New Password',}),
+#         help_text=password_validation.password_validators_help_text_html(),
+#     )
+
+#     def __init__(self, *args, **kwargs):
+#         super(UserPasswordConfirmForm, self).__init__(*args, **kwargs)
+
+from django.contrib.auth.forms import PasswordResetForm, SetPasswordForm
+from django.contrib.auth import password_validation
+from django import forms
+
+class UserPasswordResetForm(PasswordResetForm):
     email = forms.EmailField(label='', widget=forms.EmailInput(attrs={
         'placeholder': 'Email',
         'type': 'email',
         'name': 'email'
-        }))
-    
+    }))
+
 class UserPasswordConfirmForm(SetPasswordForm):
     new_password1 = forms.CharField(
         label='',
-        widget=forms.PasswordInput(attrs={'autocomplete': 'new-password','placeholder': 'New Password',}),
+        widget=forms.PasswordInput(attrs={'autocomplete': 'new-password','placeholder': 'New Password'}),
         strip=False,
-        
+        help_text=password_validation.password_validators_help_text_html(),
     )
     new_password2 = forms.CharField(
         label= '',
         strip=False,
-        widget=forms.PasswordInput(attrs={'autocomplete': 'new-password','placeholder': 'Confirm New Password',}),
-        help_text=password_validation.password_validators_help_text_html(),
+        widget=forms.PasswordInput(attrs={'autocomplete': 'new-password','placeholder': 'Confirm New Password'}),
     )
-
-    def __init__(self, *args, **kwargs):
-        super(UserPasswordConfirmForm, self).__init__(*args, **kwargs)
-        
