@@ -9,6 +9,7 @@
     <!-- Fontawesome CDN Link -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>    .input-box {         position: relative;     }     .toggle-password {         position: absolute;         right: 10px;         top: 50%;         transform: translateY(-50%); cursor: pointer; } </style>
    </head>
 <body>
     <div class="back-button">
@@ -62,13 +63,7 @@
               </div>
               <div class="input-box">
                 <i class="fas fa-lock"></i>
-                <input
-                type="password"
-                class="input-field"
-                placeholder="Password"
-                name="user_password"
-                required
-              />
+                <input        type="password"        class="input-field"        placeholder="Password"        name="user_password"        id="passwordInput"        required    />    <i class="toggle-password fas fa-eye-slash" onclick="togglePasswordVisibility()"></i>
               </div>
               <div class="text"><a href="{% url 'password_reset' %}#reset"
                 >Forgot password?</a
@@ -174,6 +169,7 @@
     </div>
    
   </div>
+  <script>    document.addEventListener('DOMContentLoaded', function () {         const passwordInput = document.getElementById('passwordInput');         const togglePasswordIcon = document.querySelector('.toggle-password');         togglePasswordIcon.addEventListener('mousedown', function () {             if (passwordInput.type === 'password') {                 passwordInput.type = 'text';                 togglePasswordIcon.classList.remove('fa-eye-slash');                 togglePasswordIcon.classList.add('fa-eye');             } else {                 passwordInput.type = 'password';                 togglePasswordIcon.classList.remove('fa-eye');                 togglePasswordIcon.classList.add('fa-eye-slash'); } }); // Prevent text selection during mouse events togglePasswordIcon.addEventListener('selectstart', function (e) { e.preventDefault(); }); }); </script>
   <script>
     // Wait for the DOM to be ready
     document.addEventListener("DOMContentLoaded", function () {
