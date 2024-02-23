@@ -517,7 +517,7 @@
                                 const roomLink = document.createElement('a');
                                 roomLink.href = `/app1/${room_name}/`; // Replace with the actual URL pattern
                                 console.log(roomLink.href);
-                                roomLink.innerHTML = `<span class="text">${user} - Room - ${room_name}</span>`;
+                                roomLink.innerHTML = `<span class="text">${user} - Joined Room - ${room_name}</span>`;
                                 roomLink.addEventListener('click', function (event) {
                                     event.preventDefault();  // Prevent the default link behavior
                                     window.location.href = roomLink.href;  // Navigate to the room URL
